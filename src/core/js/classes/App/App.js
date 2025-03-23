@@ -1,4 +1,4 @@
-import { AppState } from "./App/AppState.js";
+import { AppState } from "./AppState.js";
 
 export class App {
   #state;
@@ -7,6 +7,9 @@ export class App {
     const state = new AppState();
     state.init();
     this.#state = state;
-    debugger;
+
+    // Init stuff...
+
+    this.#state.setState("IDLE");
   }
 }
