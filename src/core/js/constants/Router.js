@@ -1,6 +1,8 @@
+import loadHtml from "../utils/loadHtml.js";
+
 export const ROUTES = [
   {
-    name: "home",
-    template: "<div></div>",
+    name: "title",
+    template: await loadHtml("./core/html/views/title.html"),
   },
 ];
