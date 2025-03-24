@@ -1,11 +1,35 @@
 import { AppState } from "./AppState.js";
 import { Router } from "../Router.js";
 
+/**
+ * @class App
+ * @classdesc The main app instance that includes all subservices
+ */
 export class App {
+  /**
+   * @property state
+   * @type {Object}
+   * @description The application state. Singleton instance of AppState class
+   */
   #state;
+  /**
+   * @property router
+   * @type {Object}
+   * @description The application router. Holds singleton application router instance.
+   */
   #router;
+  /**
+   * @property rootElement
+   * @type {HTMLElement}
+   * @description The root element in which the app is mounted
+   */
   #rootElement;
 
+  /**
+   * @method init
+   * @description Initializes the app class and subservices.
+   * @returns {void}
+   */
   init() {
     const state = new AppState();
     state.init();
@@ -24,7 +48,12 @@ export class App {
 
     this.#state.setState("IDLE");
   }
-
+  /**
+   * @method render
+   * @param {string} templateString
+   * @description render the passed template view to the root element
+   * @returns {void}
+   */
   render(templateString) {
     this.#rootElement.innerHTML = templateString;
   }

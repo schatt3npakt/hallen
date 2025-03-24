@@ -1,4 +1,9 @@
-export default async function loadHtml(htmlString) {
+/**
+ *
+ * @param {string} htmlString
+ * @returns {string}
+ */
+export async function loadHtml(htmlString) {
   const response = await fetch(htmlString);
 
   if (!response.ok) {

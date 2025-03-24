@@ -5,12 +5,12 @@
 ### 0.1
 
 - Implement global app state: LOADING, IDLE, ERROR
+- Implement router: loading scenes on navigation and displaying content.
+- Implement documentation
 
 ## Tasks
 
 ### MUST
-
-- Implement router: loading scenes on navigation and displaying content.
 
 ### SHOULD
 
