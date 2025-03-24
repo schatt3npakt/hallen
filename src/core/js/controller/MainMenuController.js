@@ -1,4 +1,4 @@
-export class TitleController {
+export class MainMenuController {
   /**
    * @property appInstance
    * @type {Object}
@@ -16,10 +16,10 @@ export class TitleController {
    * @returns {void}
    */
   init() {
-    const titleButtons = document.getElementsByClassName("test");
-    for (const item of titleButtons) {
+    const mainMenuButtons = document.getElementsByClassName("test2");
+    for (const item of mainMenuButtons) {
       item.addEventListener("click", () => {
-        this.#appInstance.router.navigateTo("mainmenu");
+        this.#appInstance.router.navigateTo("title");
       });
     }
   }

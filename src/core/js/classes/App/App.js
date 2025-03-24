@@ -1,6 +1,7 @@
 import { AppState } from "./AppState.js";
 import { Router } from "../Router.js";
 import { TitleController } from "../../controller/TitleController.js";
+import { MainMenuController } from "../../controller/MainMenuController.js";
 
 /**
  * @class App
@@ -32,25 +33,55 @@ export class App {
    * @returns {void}
    */
   init() {
-    const state = new AppState();
-    state.init();
-    this.#state = state;
+    this.#initState();
+    this.#mountApp();
+    this.#initRouter();
 
+    this.#state.setState("IDLE");
+  }
+  /**
+   * @method #mountApp
+   * @description mounts application to root element
+   * @returns {void}
+   */
+  #mountApp() {
     const $re = document.getElementById("app");
     if ($re === null) {
       throw new Error("App: No app root element found in document.");
     }
     this.#rootElement = $re;
-
+  }
+  /**
+   * @method #initControllers
+   * @description init all controllers for event handler application
+   * @returns {void}
+   */
+  #initControllers() {
+    const titleController = new TitleController(this);
+    titleController.init();
+    const mainMenuController = new MainMenuController(this);
+    mainMenuController.init();
+  }
+  /**
+   * @method #initRouter
+   * @description starts the router and navigates to first view
+   * @returns {void}
+   */
+  #initRouter() {
     const router = new Router(this);
     this.router = router;
     this.router.init();
     this.router.navigateTo("title");
-
-    const titleController = new TitleController(this);
-    titleController.init();
-
-    this.#state.setState("IDLE");
+  }
+  /**
+   * @method #initState
+   * @description inits the app state
+   * @returns {void}
+   */
+  #initState() {
+    const state = new AppState();
+    state.init();
+    this.#state = state;
   }
   /**
    * @method render
@@ -60,5 +91,6 @@ export class App {
    */
   render(templateString) {
     this.#rootElement.innerHTML = templateString;
+    this.#initControllers();
   }
 }

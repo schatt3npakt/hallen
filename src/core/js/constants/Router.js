@@ -10,4 +10,8 @@ export const ROUTES = [
     name: "title",
     template: await loadHtml("./core/html/views/title.html"),
   },
+  {
+    name: "mainmenu",
+    template: await loadHtml("./core/html/views/mainmenu.html"),
+  },
 ];
