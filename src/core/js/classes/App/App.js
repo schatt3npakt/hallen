@@ -1,5 +1,6 @@
 import { AppState } from "./AppState.js";
 import { Router } from "../Router.js";
+import { TitleController } from "../../controller/TitleController.js";
 
 /**
  * @class App
@@ -17,7 +18,7 @@ export class App {
    * @type {Object}
    * @description The application router. Holds singleton application router instance.
    */
-  #router;
+  router;
   /**
    * @property rootElement
    * @type {HTMLElement}
@@ -42,9 +43,12 @@ export class App {
     this.#rootElement = $re;
 
     const router = new Router(this);
-    this.#router = router;
-    this.#router.init();
-    this.#router.navigateTo("title");
+    this.router = router;
+    this.router.init();
+    this.router.navigateTo("title");
+
+    const titleController = new TitleController(this);
+    titleController.init();
 
     this.#state.setState("IDLE");
   }

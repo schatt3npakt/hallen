@@ -2,6 +2,19 @@
 
 Hallen is a framework for visual novels based on html, css and js.
 
+## Project structure
+
+- **core** framework code
+  - **html**
+    - **views** template code for the application main views
+  - **js**
+    - **classes** business logic and OOP classes
+    - **constants** variables and constants
+    - **controller** classes for binding business logic to templates
+    - **utils** utility functions and helpers
+- **scenes** game code and scenes
+- **index.html** main app document
+
 ## Vision
 
 Hallen can be used to create accessible, responsive web-based visual novels.

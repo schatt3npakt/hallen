@@ -52,7 +52,7 @@ export class Router {
       (routeItem) => routeItem.name === routeString
     );
     if (route === undefined) {
-      throw new Error("Router: No matching route found: " + route);
+      throw new Error("Router: No matching route found: " + routeString);
     }
 
     this.#appInstance.render(route.template);
