@@ -19,7 +19,7 @@
 ### BACKLOG
 
 - Implement all views
-- implement main naviigation
+- implement main navigation
 - implement db and saving
 - implement audio playing functionality
 - implement header

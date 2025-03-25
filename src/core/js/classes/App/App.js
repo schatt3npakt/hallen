@@ -1,7 +1,5 @@
 import { AppState } from "./AppState.js";
 import { Router } from "../Router.js";
-import { TitleController } from "../../controller/TitleController.js";
-import { MainMenuController } from "../../controller/MainMenuController.js";
 
 /**
  * @class App
@@ -36,6 +34,7 @@ export class App {
     this.#initState();
     this.#mountApp();
     this.#initRouter();
+    this.exposeServices();
 
     this.#state.setState("IDLE");
   }
@@ -50,17 +49,6 @@ export class App {
       throw new Error("App: No app root element found in document.");
     }
     this.#rootElement = $re;
-  }
-  /**
-   * @method #initControllers
-   * @description init all controllers for event handler application
-   * @returns {void}
-   */
-  #initControllers() {
-    const titleController = new TitleController(this);
-    titleController.init();
-    const mainMenuController = new MainMenuController(this);
-    mainMenuController.init();
   }
   /**
    * @method #initRouter
@@ -91,6 +79,13 @@ export class App {
    */
   render(templateString) {
     this.#rootElement.innerHTML = templateString;
-    this.#initControllers();
+  }
+  /**
+   * @method exposeServices
+   * @description Write app subservices into window
+   * @returns {void}
+   */
+  exposeServices() {
+    window.haRouter = this.router;
   }
 }
