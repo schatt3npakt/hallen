@@ -14,4 +14,8 @@ export const ROUTES = [
     name: "mainmenu",
     template: await loadHtml("./core/html/views/mainmenu.html"),
   },
+  {
+    name: "game",
+    template: await loadHtml("./core/html/views/game.html"),
+  },
 ];

@@ -7,6 +7,7 @@
 - Implement global app state: LOADING, IDLE, ERROR
 - Implement router: loading scenes on navigation and displaying content.
 - Implement documentation
+- Controller entfernen -> router in window schreiben
 
 ## Tasks
 
@@ -19,10 +20,10 @@
 ### BACKLOG
 
 - Implement all views
-- implement main navigation
+- implement game view
 - implement db and saving
 - implement audio playing functionality
 - implement header
-- Controller entfernen -> router und audio manager in window schreiben
+- audio manager in window schreiben
 - events in views über onclick
 - implement user edited constants, for example game title

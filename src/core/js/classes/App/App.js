@@ -11,7 +11,7 @@ export class App {
    * @type {Object}
    * @description The application state. Singleton instance of AppState class
    */
-  #state;
+  state;
   /**
    * @property router
    * @type {Object}
@@ -36,7 +36,7 @@ export class App {
     this.#initRouter();
     this.exposeServices();
 
-    this.#state.setState("IDLE");
+    this.state.setState("IDLE");
   }
   /**
    * @method #mountApp
@@ -69,7 +69,7 @@ export class App {
   #initState() {
     const state = new AppState();
     state.init();
-    this.#state = state;
+    this.state = state;
   }
   /**
    * @method render
