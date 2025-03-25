@@ -17,3 +17,12 @@
 ### COULD
 
 ### BACKLOG
+
+- Implement all views
+- implement main naviigation
+- implement db and saving
+- implement audio playing functionality
+- implement header
+- Controller entfernen -> router und audio manager in window schreiben
+- events in views über onclick
+- implement user edited constants, for example game title

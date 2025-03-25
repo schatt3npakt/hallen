@@ -15,12 +15,5 @@ export class MainMenuController {
    * @description initialises event handlers for this controller
    * @returns {void}
    */
-  init() {
-    const mainMenuButtons = document.getElementsByClassName("test2");
-    for (const item of mainMenuButtons) {
-      item.addEventListener("click", () => {
-        this.#appInstance.router.navigateTo("title");
-      });
-    }
-  }
+  init() {}
 }

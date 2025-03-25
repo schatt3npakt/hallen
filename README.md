@@ -29,7 +29,6 @@ The games are composed of scenes, which link to new scenes. A scene is composed 
 - Main Menu
 - Save Menu
 - Options
-- Scene select
 - Game view
 
 ### Persistence

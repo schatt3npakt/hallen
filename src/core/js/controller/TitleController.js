@@ -16,11 +16,9 @@ export class TitleController {
    * @returns {void}
    */
   init() {
-    const titleButtons = document.getElementsByClassName("test");
-    for (const item of titleButtons) {
-      item.addEventListener("click", () => {
-        this.#appInstance.router.navigateTo("mainmenu");
-      });
-    }
+    const titleButton = document.getElementById("test");
+    titleButton.addEventListener("click", () => {
+      this.#appInstance.router.navigateTo("mainmenu");
+    });
   }
 }
