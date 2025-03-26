@@ -17,4 +17,8 @@ export const ROUTES = [
     name: "saves",
     template: await loadHtml("./core/html/views/saves.html"),
   },
+  {
+    name: "options",
+    template: await loadHtml("./core/html/views/options.html"),
+  },
 ];

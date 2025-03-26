@@ -8,6 +8,12 @@
 - Implement router: loading scenes on navigation and displaying content.
 - Implement documentation
 - Controller entfernen -> router in window schreiben
+- implement game view
+- implement db and saving
+- events in views über onclick
+- db class promisify
+- Implement all views
+- implement header
 
 ## Tasks
 
@@ -19,12 +25,6 @@
 
 ### BACKLOG
 
-- Implement all views
-- implement game view
-- implement db and saving
 - implement audio playing functionality
-- implement header
 - audio manager in window schreiben
-- events in views über onclick
 - implement user edited constants, for example game title
-- db class promisify
