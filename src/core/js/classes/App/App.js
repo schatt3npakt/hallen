@@ -12,10 +12,10 @@ export class App {
     window.haRouter = this.router;
   }
   init() {
+    this.#initDb();
     this.#initState();
     this.#mountApp();
     this.#initRouter();
-    this.#initDb();
     this.exposeServices();
 
     this.state.setState("IDLE");
@@ -27,13 +27,13 @@ export class App {
     this.router.navigateTo("title");
   }
   #initState() {
-    const state = new AppState();
+    const state = new AppState(this);
     state.init();
     this.state = state;
   }
-  #initDb() {
+  async #initDb() {
     const db = new Db(this);
-    db.init();
+    await db.init();
     this.db = db;
   }
   #mountApp() {
