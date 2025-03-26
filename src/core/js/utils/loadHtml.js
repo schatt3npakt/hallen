@@ -1,8 +1,3 @@
-/**
- *
- * @param {string} htmlString
- * @returns {string}
- */
 export async function loadHtml(htmlString) {
   const response = await fetch(htmlString);
 

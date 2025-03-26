@@ -27,3 +27,4 @@
 - audio manager in window schreiben
 - events in views über onclick
 - implement user edited constants, for example game title
+- db class promisify
