@@ -1,5 +1,4 @@
 import { ROUTES } from "../constants/Router.js";
-import { Game } from "./Game.js";
 
 export class Router {
   #appInstance;
@@ -24,10 +23,5 @@ export class Router {
     }
 
     this.#appInstance.render(route.template);
-
-    if (route.name === "game") {
-      const game = new Game(this.#appInstance);
-      game.init();
-    }
   }
 }

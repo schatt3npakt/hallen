@@ -2,21 +2,30 @@ import { AppState } from "./AppState.js";
 import { Db } from "../Db.js";
 import { Router } from "../Router.js";
 
+import { HallenGame } from "../../components/hallenGame.js";
+import { HallenSaveManager } from "../../components/hallenSaveManager.js";
+
 export class App {
   state;
   router;
   db;
   #rootElement;
 
-  exposeServices() {
-    window.haRouter = this.router;
+  #defineCustomElements() {
+    customElements.define("hallen-game", HallenGame);
+    customElements.define("hallen-save-manager", HallenSaveManager);
   }
-  init() {
-    this.#initDb();
-    this.#initState();
+  #exposeServices() {
+    window.hallenRouter = this.router;
+    window.hallenState = this.state;
+  }
+  async init() {
     this.#mountApp();
+    await this.#initDb();
+    await this.#initState();
     this.#initRouter();
-    this.exposeServices();
+    this.#exposeServices();
+    this.#defineCustomElements();
 
     this.state.setState("IDLE");
   }
@@ -26,9 +35,9 @@ export class App {
     this.router.init();
     this.router.navigateTo("title");
   }
-  #initState() {
+  async #initState() {
     const state = new AppState(this);
-    state.init();
+    await state.init();
     this.state = state;
   }
   async #initDb() {

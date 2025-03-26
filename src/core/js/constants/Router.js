@@ -13,4 +13,8 @@ export const ROUTES = [
     name: "game",
     template: await loadHtml("./core/html/views/game.html"),
   },
+  {
+    name: "saves",
+    template: await loadHtml("./core/html/views/saves.html"),
+  },
 ];

@@ -3,7 +3,7 @@ export class Db {
 
   async deleteSavestate(stateIndex) {
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
+      const connection = window.indexedDB.open("hallenStorage");
       connection.onsuccess = (event) => {
         this.#db = event.target.result;
 
@@ -117,7 +117,8 @@ export class Db {
           .transaction(["savestates"], "readwrite")
           .objectStore("savestates");
         const request = objectStore.add({
-          vale: "test",
+          // TODO: make this not temporary
+          value: "test",
         });
 
         request.onsuccess = () => {
