@@ -5,15 +5,19 @@ export class AppState {
   init() {
     // TODO: load from local storage
     this.state = initialAppState;
-    this.state.currentLevelId = hallenConfig.entryLevelId;
+    this.state.currentSceneId = hallenConfig.entryLevelId;
   }
 
   getState() {
     return this.state;
   }
 
-  setCurrentLevelId(levelId) {
-    this.state.currentLevelId = levelId;
+  setState(newState) {
+    Object.assign(this.state, newState);
+  }
+
+  toScene(sceneId) {
+    this.state.currentSceneId = sceneId;
     window.hallenRouter.refresh();
   }
 }

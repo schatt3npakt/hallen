@@ -10,7 +10,7 @@ export class HallenGame extends HTMLElement {
   }
   render() {
     const scenePath =
-      "./scenes/" + window.hallenState.getState().currentLevelId + ".html";
+      "./scenes/" + window.hallenState.getState().currentSceneId + ".html";
     loadHtml(scenePath).then((html) => {
       this.innerHTML = html;
     });
