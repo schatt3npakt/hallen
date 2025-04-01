@@ -83,6 +83,13 @@ export class Db {
     });
   }
 
+  async getLatestSave() {
+    const saves = await this.getAll();
+    if (saves.length === 0) return null;
+
+    saves.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return saves[0];
+  }
   async createNewSave() {
     await this.add({
       id: Math.random().toString(16).slice(2),

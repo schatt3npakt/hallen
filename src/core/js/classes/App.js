@@ -11,17 +11,10 @@ export class App {
     await this.initAppState();
     this.registerComponents();
   }
-
   async initAppState() {
     this.appState = new AppState();
     this.appState.init();
     window.hallenState = this.appState;
-  }
-  async initRouter() {
-    const router = new Router();
-    await router.init();
-    router.navigateTo("title");
-    window.hallenRouter = router;
   }
   async initDb() {
     return new Promise((resolve, reject) => {
@@ -37,6 +30,12 @@ export class App {
           reject(error);
         });
     });
+  }
+  async initRouter() {
+    const router = new Router();
+    await router.init();
+    router.navigateTo("title");
+    window.hallenRouter = router;
   }
   registerComponents() {
     customElements.define("hallen-save-manager", HallenSaveManager);
