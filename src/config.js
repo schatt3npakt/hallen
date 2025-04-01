@@ -1,3 +1,3 @@
 export const hallenConfig = {
-  entryLevel: "1",
+  entryLevelId: "1",
 };

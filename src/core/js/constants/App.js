@@ -1,1 +1,3 @@
-export const initialAppState = {};
+export const initialAppState = {
+  currentSceneId: null,
+};

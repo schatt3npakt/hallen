@@ -1,7 +1,8 @@
-import { Router } from "./Router.js";
-import { Db } from "./Db.js";
-import { HallenSaveManager } from "../components/hallenSaveManager.js";
 import { AppState } from "./AppState.js";
+import { Db } from "./Db.js";
+import { Router } from "./Router.js";
+import { HallenSaveManager } from "../components/hallenSaveManager.js";
+import { HallenGame } from "../components/hallenGame.js";
 
 export class App {
   async init() {
@@ -22,7 +23,6 @@ export class App {
     router.navigateTo("title");
     window.hallenRouter = router;
   }
-
   async initDb() {
     return new Promise((resolve, reject) => {
       const db = new Db("hallen", "hallen");
@@ -40,5 +40,6 @@ export class App {
   }
   registerComponents() {
     customElements.define("hallen-save-manager", HallenSaveManager);
+    customElements.define("hallen-game", HallenGame);
   }
 }
