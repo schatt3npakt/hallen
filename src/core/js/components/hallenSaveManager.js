@@ -4,19 +4,26 @@ export class HallenSaveManager extends HTMLElement {
   }
 
   async connectedCallback() {
-    const saves = window.hallenState.getSavestates();
-    let template = `
-      <ul>
-        ${saves.map((save) => {
-          return (
-            "<li>" +
-            save.value +
-            "<button>Load save</button><button>Delete save</button></li>"
-          );
-        })} 
-      </ul>
-      <button>Create new save</button>
-    `;
+    const storeEntries = await window.hallenDb.getAll();
+    let template = `<h2>Saved Games</h2>`;
+
+    if (storeEntries.length === 0) {
+      template += `<p>No saved games found.</p>`;
+    } else {
+      template += `<ul>`;
+      storeEntries.forEach((entry) => {
+        template += `
+          <li>
+            ${entry.date}
+            <button onclick="window.hallenDb.loadSave('${entry.id}')">Load save</button>
+            <button onclick="window.hallenDb.deleteSave('${entry.id}')">Delete save</button>
+          </li>`;
+      });
+      template += `</ul>`;
+    }
+
+    template +=
+      '<button onclick="window.hallenDb.createNewSave()">Save Game</button>';
 
     this.innerHTML = template;
   }

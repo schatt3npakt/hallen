@@ -1,134 +1,108 @@
 export class Db {
-  #db;
-
-  async deleteSavestate(stateIndex) {
-    return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("hallenStorage");
-      connection.onsuccess = (event) => {
-        this.#db = event.target.result;
-
-        const objectStore = this.#db
-          .transaction(["savestates"], "readwrite")
-          .objectStore("savestates");
-        const request = objectStore.delete(stateIndex);
-
-        request.onsuccess = () => {
-          resolve();
-        };
-        request.onerror = () => {
-          reject();
-        };
-      };
-      connection.onerror = (error) => {
-        reject(error);
-      };
-    });
+  constructor(dbName, storeName) {
+    this.dbName = dbName;
+    this.storeName = storeName;
   }
-  async init() {
+
+  async openDb() {
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
-      connection.onupgradeneeded = (event) => {
-        this.#db = event.target.result;
-        this.#db = event.target.result;
-        this.#db.createObjectStore("savestates", {
-          autoIncrement: true,
-        });
-        resolve();
+      const request = indexedDB.open(this.dbName, 1);
+
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains(this.storeName)) {
+          db.createObjectStore(this.storeName, {
+            keyPath: "id",
+            autoIncrement: true,
+          });
+        }
       };
-      connection.onsuccess = (event) => {
-        this.#db = event.target.result;
-        resolve();
-      };
-      connection.onerror = (error) => {
-        reject(error);
-      };
+
+      request.onsuccess = (event) => resolve(event.target.result);
+      request.onerror = (event) => reject(event.target.error);
     });
   }
 
-  async readSavestates() {
+  async add(data) {
+    const db = await this.openDb();
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
-      connection.onsuccess = () => {
-        const objectStore = this.#db
-          .transaction(["savestates"])
-          .objectStore("savestates");
-        objectStore.getAll().onsuccess = (event) => {
-          resolve(event.target.result);
-        };
-      };
-      connection.onerror = (error) => {
-        reject(error);
-      };
+      const transaction = db.transaction(this.storeName, "readwrite");
+      const store = transaction.objectStore(this.storeName);
+      const request = store.add(data);
+
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => reject(event.target.error);
     });
   }
-  async readSavestate(stateIndex) {
+
+  async get(id) {
+    const db = await this.openDb();
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
-      connection.onsuccess = (event) => {
-        this.#db = event.target.result;
+      const transaction = db.transaction(this.storeName, "readonly");
+      const store = transaction.objectStore(this.storeName);
+      const request = store.get(id);
 
-        const objectStore = this.#db
-          .transaction(["savestates"])
-          .objectStore("savestates");
-        const request = objectStore.get(stateIndex);
-
-        request.onsuccess = () => {
-          return resolve(request.result);
-        };
-        request.onerror = (error) => {
-          return reject(error);
-        };
-      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => reject(event.target.error);
     });
   }
-  async updateSavestate(stateIndex, payload) {
+
+  async getAll() {
+    const db = await this.openDb();
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
-      connection.onsuccess = (event) => {
-        this.#db = event.target.result;
+      const transaction = db.transaction(this.storeName, "readonly");
+      const store = transaction.objectStore(this.storeName);
+      const request = store.getAll();
 
-        const objectStore = this.#db
-          .transaction(["savestates"], "readwrite")
-          .objectStore("savestates");
-        const request = objectStore.get(stateIndex);
-
-        request.onsuccess = () => {
-          const data = event.target.result;
-          data.value = payload;
-
-          const requestUpdate = objectStore.put(data);
-          requestUpdate.onsuccess = () => {
-            resolve();
-          };
-        };
-        request.onerror = (error) => {
-          reject(error);
-        };
-      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => reject(event.target.error);
     });
   }
-  async writeSavestate() {
+
+  async update(data) {
+    const db = await this.openDb();
     return new Promise((resolve, reject) => {
-      const connection = window.indexedDB.open("haStorage");
-      connection.onsuccess = (event) => {
-        this.#db = event.target.result;
+      const transaction = db.transaction(this.storeName, "readwrite");
+      const store = transaction.objectStore(this.storeName);
+      const request = store.put(data);
 
-        const objectStore = this.#db
-          .transaction(["savestates"], "readwrite")
-          .objectStore("savestates");
-        const request = objectStore.add({
-          // TODO: make this not temporary
-          value: "test",
-        });
-
-        request.onsuccess = () => {
-          resolve();
-        };
-
-        request.onerror = (error) => {
-          reject(error);
-        };
-      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => reject(event.target.error);
     });
+  }
+
+  async delete(id) {
+    const db = await this.openDb();
+    return new Promise((resolve, reject) => {
+      const transaction = db.transaction(this.storeName, "readwrite");
+      const store = transaction.objectStore(this.storeName);
+      const request = store.delete(id);
+
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = (event) => reject(event.target.error);
+    });
+  }
+
+  async createNewSave() {
+    await this.add({
+      id: Math.random().toString(16).slice(2),
+      value: window.hallenState.getState(),
+      date: new Date().toISOString(),
+    });
+
+    window.hallenRouter.refresh();
+  }
+  async loadSave(id) {
+    const save = await this.get(id);
+    if (save) {
+      window.hallenState.setState(save.value);
+      window.hallenRouter.refresh();
+    } else {
+      console.error("Save not found");
+    }
+  }
+  async deleteSave(id) {
+    await this.delete(id);
+    window.hallenRouter.refresh();
   }
 }

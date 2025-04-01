@@ -1,27 +1,26 @@
-import { ROUTES } from "../constants/Router.js";
+import { loadHtml } from "../utils/loadHtml.js";
 
 export class Router {
-  #appInstance;
-  #routes;
-
-  constructor(appInstance) {
-    this.#appInstance = appInstance;
+  constructor() {
+    this.$rootElement = document.getElementById("hallenApp");
   }
 
-  getRoutes() {
-    return this.#routes;
+  async init() {
+    this.routes = {
+      game: await loadHtml("./core/html/views/game.html"),
+      mainmenu: await loadHtml("./core/html/views/mainmenu.html"),
+      options: await loadHtml("./core/html/views/options.html"),
+      saves: await loadHtml("./core/html/views/saves.html"),
+      title: await loadHtml("./core/html/views/title.html"),
+    };
+    this.currentPageTemplate = this.routes.title;
   }
-  init() {
-    this.#routes = ROUTES;
-  }
-  navigateTo(routeString) {
-    const route = this.#routes.find(
-      (routeItem) => routeItem.name === routeString
-    );
-    if (route === undefined) {
-      throw new Error("Router: No matching route found: " + routeString);
-    }
 
-    this.#appInstance.render(route.template);
+  navigateTo(routeName) {
+    this.$rootElement.innerHTML = this.routes[routeName];
+    this.currentPageTemplate = this.routes[routeName];
+  }
+  refresh() {
+    this.$rootElement.innerHTML = this.currentPageTemplate;
   }
 }
