@@ -15,7 +15,6 @@ export class Router {
     };
     this.currentPageTemplate = this.routes.title;
   }
-
   navigateTo(routeName) {
     this.$rootElement.innerHTML = this.routes[routeName];
     this.currentPageTemplate = this.routes[routeName];

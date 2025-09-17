@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Game</title>
     <script src="./core/js/index.js" type="module" async defer></script>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/theme.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
-  <body>
-    <header>
+  <body class="hg-body">
+    <header class="hg-header">
       <nav>
         <button onclick="hallenRouter.navigateTo('mainmenu')">
           To Main Menu
@@ -16,6 +19,6 @@
         <button onclick="hallenRouter.navigateTo('options')">To Options</button>
       </nav>
     </header>
-    <div id="hallenApp"></div>
+    <main class="hg-main" id="hallenApp"></main>
   </body>
 </html>

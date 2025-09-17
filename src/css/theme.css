@@ -1,0 +1,29 @@
+:root {
+  --storytitle-font-size: 2.5rem;
+  --h1-font-size: 2rem;
+  --h2-font-size: 1.5rem;
+  --main-font-size: 1.2rem;
+  --main-font-family: sans-serif;
+  --headline-font-family: serif;
+  --logo-font-family: sans-serif;
+
+  --primary-color-dark: rgb(29, 29, 24);
+  --primary-color-dark-0: rgba(29, 29, 24, 0);
+  --primary-color-dark-10: rgba(29, 29, 24, 0.1);
+  --primary-color-dark-50: rgba(29, 29, 24, 0.5);
+  --primary-color-dark-75: rgba(29, 29, 24, 0.75);
+  --primary-color-light: rgb(213, 213, 181);
+  --primary-color-light-0: rgba(213, 213, 181, 0);
+  --primary-color-light-25: rgba(213, 213, 181, 0.25);
+  --primary-color-light-50: rgba(213, 213, 181, 0.5);
+  --primary-color-light-75: rgba(213, 213, 181, 0.75);
+}
+
+@media (min-width: 720px) {
+  :root {
+    --storytitle-font-size: 3.75rem;
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1.75rem;
+    --main-font-size: 1.5rem;
+  }
+}

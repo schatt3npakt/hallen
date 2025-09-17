@@ -1,0 +1,20 @@
+.hg-body {
+  background-color: var(--primary-color-light);
+  color: var(--primary-color-dark);
+  font-family: var(--main-font-family);
+  font-size: var(--main-font-size);
+
+  button {
+    background-color: transparent;
+    border: none;
+    outline: 1px solid var(--primary-color-light);
+    color: var(--primary-color-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .hg-body {
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+  }
+}

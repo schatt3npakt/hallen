@@ -12,13 +12,15 @@ Hallen is a framework for visual novels based on html, css and js.
     - **constants** variables and constants
     - **components** html custom components
     - **utils** utility functions and helpers
-- **scenes** game code and scenes
+- **scenes** game scenes
+- **config** game configuration
+- **index.css** game styles
 - **index.html** main app document
 
 ## Vision
 
 Hallen can be used to create accessible, responsive web-based visual novels.
-The games are composed of scenes, which link to new scenes. A scene is composed of a visual and dialogue. At the end of a scene, it navigates to a new scene or presents a couple of dialogue options which each leads to a new scene.
+The games are composed of scenes, which link to new scenes. A scene is composed of an optional visual and dialogue. At the end of a scene, it navigates to a new scene or presents a couple of dialogue options which each leads to a new scene.
 
 ## Concept
 
@@ -33,7 +35,7 @@ The games are composed of scenes, which link to new scenes. A scene is composed 
 
 ### Persistence
 
-- Game progress and settings are persisted in indexed DB
+- Game progress and settings are persisted in indexedDB
 - the game creates two stores: system and saves
 - system is for app settings
 - saves is for savestates of the game
