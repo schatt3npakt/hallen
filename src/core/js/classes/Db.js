@@ -34,7 +34,6 @@ export class Db {
       request.onerror = (event) => reject(event.target.error);
     });
   }
-
   async get(id) {
     const db = await this.openDb();
     return new Promise((resolve, reject) => {
@@ -46,7 +45,6 @@ export class Db {
       request.onerror = (event) => reject(event.target.error);
     });
   }
-
   async getAll() {
     const db = await this.openDb();
     return new Promise((resolve, reject) => {
@@ -58,7 +56,6 @@ export class Db {
       request.onerror = (event) => reject(event.target.error);
     });
   }
-
   async update(data) {
     const db = await this.openDb();
     return new Promise((resolve, reject) => {
@@ -70,7 +67,6 @@ export class Db {
       request.onerror = (event) => reject(event.target.error);
     });
   }
-
   async delete(id) {
     const db = await this.openDb();
     return new Promise((resolve, reject) => {
@@ -82,7 +78,6 @@ export class Db {
       request.onerror = (event) => reject(event.target.error);
     });
   }
-
   async getLatestSave() {
     const saves = await this.getAll();
     if (saves.length === 0) return null;
