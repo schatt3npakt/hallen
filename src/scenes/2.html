@@ -1,23 +1,26 @@
-<img
-  id="visual"
-  src="https://via.placeholder.com/500x500"
-  alt="An empty room"
-/>
+<img id="visual" src="https://placehold.co/720x504" alt="An empty room" />
 
 <audio id="bgm">
   <source src="bgm.ogg" type="audio/ogg" />
 </audio>
 
-<div id="dialogue">
-  <div>
-    <img alt="Second visual" src="https://via.placeholder.com/400x200" />
+<div id="content">
+  <div id="dialogue">
+    <img alt="A young woman" src="https://placehold.co/100x100" />
 
-    <p>Hallo, ich bin die zweite Szene</p>
+    <p>
+      The room was silent except for the faint hum of the overhead lights.
+      Shadows stretched across the floor, broken only by the soft glow filtering
+      through the dusty windows. She stood near the center, her gaze fixed on
+      something unseen, lost in thought. The air felt heavy, as if holding its
+      breath, waiting for something to happen. Every detail in the room seemed
+      frozen in time, untouched and undisturbed.
+    </p>
 
     <audio><source src="gunshot.ogg" type="audio/ogg" /></audio>
   </div>
 
-  <div>
+  <div id="hg-choices">
     <button class="hg-button" type="button" onclick="hallenState.toScene(1)">
       Choice 1
     </button>
