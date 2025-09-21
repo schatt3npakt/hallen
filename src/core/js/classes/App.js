@@ -38,7 +38,7 @@ export class App {
     window.hallenRouter = router;
   }
   registerComponents() {
-    customElements.define("hallen-save-manager", HallenSaveManager);
-    customElements.define("hallen-game", HallenGame);
+    customElements.define("hg-save-manager", HallenSaveManager);
+    customElements.define("hg-game", HallenGame);
   }
 }

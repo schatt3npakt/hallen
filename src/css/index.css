@@ -2,10 +2,15 @@
   background-color: var(--primary-color-light);
   color: var(--primary-color-dark);
   font-family: var(--main-font-family);
-  font-size: 1rem;
+  font-size: 1.25rem;
   padding: 1rem;
 
-  button {
+  ::selection {
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+  }
+
+  .hg-button {
     background-color: var(--primary-color-light);
     border: none;
     color: var(--primary-color-dark);
@@ -13,12 +18,18 @@
     font-size: 1.2rem;
     outline: 1px solid var(--primary-color-dark);
     padding: 0.25rem 0.5rem;
+    width: fit-content;
 
     &:active,
     &:hover,
     &:focus {
       background-color: var(--primary-color-dark);
       color: var(--primary-color-light);
+
+      &::selection {
+        background-color: var(--primary-color-light);
+        color: var(--primary-color-dark);
+      }
     }
   }
 
@@ -32,6 +43,10 @@
   }
 
   .hg-main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     margin: 0 auto;
     max-width: 720px;
   }
@@ -44,7 +59,7 @@
 
   .hg-h1 {
     font-size: 2rem;
-    margin-block-end: 2rem;
+    margin-block-end: 0.5rem;
     text-align: center;
   }
 }
@@ -52,7 +67,9 @@
 /* Tablet styles */
 @media (min-width: 720px) {
   .hg-body {
-    button {
+    padding: 2rem 3rem;
+
+    .hg-button {
       font-size: 1.25rem;
       padding: 0.5rem 1rem;
     }
@@ -65,7 +82,7 @@
 
     .hg-h1 {
       font-size: 3rem;
-      margin-block-end: 3rem;
+      margin-block-end: 1rem;
     }
   }
 }
@@ -76,7 +93,12 @@
     background-color: var(--primary-color-dark);
     color: var(--primary-color-light);
 
-    button {
+    ::selection {
+      background-color: var(--primary-color-light);
+      color: var(--primary-color-dark);
+    }
+
+    .hg-button {
       background-color: var(--primary-color-dark);
       color: var(--primary-color-light);
       outline-color: var(--primary-color-light);
@@ -86,6 +108,11 @@
       &:focus {
         background-color: var(--primary-color-light);
         color: var(--primary-color-dark);
+
+        &::selection {
+          background-color: var(--primary-color-dark);
+          color: var(--primary-color-light);
+        }
       }
     }
   }
@@ -94,7 +121,7 @@
 /* motion safe styles */
 @media (prefers-reduced-motion: no-preference) {
   .hg-body {
-    button {
+    .hg-button {
       transition:
         color 0.2s ease-in-out,
         background-color 0.2s ease-in-out,

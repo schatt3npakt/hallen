@@ -8,7 +8,7 @@ export class HallenSaveManager extends HTMLElement {
     let template = "";
 
     template +=
-      '<button onclick="window.hallenDb.createNewSave()">Create new save</button>';
+      '<button class="hg-button" onclick="window.hallenDb.createNewSave()">Create new save</button>';
 
     template += `<h2>Saved Games</h2>`;
 
@@ -20,8 +20,8 @@ export class HallenSaveManager extends HTMLElement {
         template += `
           <li>
             ${this.renderSaveDate(entry.date)}
-            <button onclick="window.hallenDb.loadSave('${entry.id}')">Load save</button>
-            <button onclick="window.hallenDb.deleteSave('${entry.id}')">Delete save</button>
+            <button class="hg-button"  onclick="window.hallenDb.loadSave('${entry.id}')">Load save</button>
+            <button class="hg-button"  onclick="window.hallenDb.deleteSave('${entry.id}')">Delete save</button>
           </li>`;
       });
       template += `</ul>`;
