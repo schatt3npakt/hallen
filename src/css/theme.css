@@ -1,8 +1,4 @@
 :root {
-  --storytitle-font-size: 2.5rem;
-  --h1-font-size: 2rem;
-  --h2-font-size: 1.5rem;
-  --main-font-size: 1.2rem;
   --main-font-family: sans-serif;
   --headline-font-family: serif;
   --logo-font-family: sans-serif;
@@ -17,13 +13,4 @@
   --primary-color-light-25: rgba(213, 213, 181, 0.25);
   --primary-color-light-50: rgba(213, 213, 181, 0.5);
   --primary-color-light-75: rgba(213, 213, 181, 0.75);
-}
-
-@media (min-width: 720px) {
-  :root {
-    --storytitle-font-size: 3.75rem;
-    --h1-font-size: 2.5rem;
-    --h2-font-size: 1.75rem;
-    --main-font-size: 1.5rem;
-  }
 }

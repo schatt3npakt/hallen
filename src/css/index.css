@@ -2,19 +2,103 @@
   background-color: var(--primary-color-light);
   color: var(--primary-color-dark);
   font-family: var(--main-font-family);
-  font-size: var(--main-font-size);
+  font-size: 1rem;
+  padding: 1rem;
 
   button {
-    background-color: transparent;
+    background-color: var(--primary-color-light);
     border: none;
-    outline: 1px solid var(--primary-color-light);
-    color: var(--primary-color-light);
+    color: var(--primary-color-dark);
+    cursor: pointer;
+    font-size: 1.2rem;
+    outline: 1px solid var(--primary-color-dark);
+    padding: 0.25rem 0.5rem;
+
+    &:active,
+    &:hover,
+    &:focus {
+      background-color: var(--primary-color-dark);
+      color: var(--primary-color-light);
+    }
+  }
+
+  .hg-header {
+    > nav {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-block-end: 2rem;
+    }
+  }
+
+  .hg-main {
+    margin: 0 auto;
+    max-width: 720px;
+  }
+
+  .hg-h1,
+  .hg-h2,
+  .hg-h3 {
+    margin-block-end: 1rem;
+  }
+
+  .hg-h1 {
+    font-size: 2rem;
+    margin-block-end: 2rem;
+    text-align: center;
   }
 }
 
+/* Tablet styles */
+@media (min-width: 720px) {
+  .hg-body {
+    button {
+      font-size: 1.25rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .hg-header {
+      > nav {
+        margin-block-end: 4rem;
+      }
+    }
+
+    .hg-h1 {
+      font-size: 3rem;
+      margin-block-end: 3rem;
+    }
+  }
+}
+
+/* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   .hg-body {
     background-color: var(--primary-color-dark);
     color: var(--primary-color-light);
+
+    button {
+      background-color: var(--primary-color-dark);
+      color: var(--primary-color-light);
+      outline-color: var(--primary-color-light);
+
+      &:active,
+      &:hover,
+      &:focus {
+        background-color: var(--primary-color-light);
+        color: var(--primary-color-dark);
+      }
+    }
+  }
+}
+
+/* motion safe styles */
+@media (prefers-reduced-motion: no-preference) {
+  .hg-body {
+    button {
+      transition:
+        color 0.2s ease-in-out,
+        background-color 0.2s ease-in-out,
+        outline 0.2s ease-in-out;
+    }
   }
 }
