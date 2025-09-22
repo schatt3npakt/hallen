@@ -14,7 +14,7 @@ export class App {
   async initAppState() {
     this.appState = new AppState();
     this.appState.init();
-    window.hallenState = this.appState;
+    window.hallen.state = this.appState;
   }
   async initDb() {
     return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export class App {
       db.openDb()
         .then(() => {
           console.log("Database opened successfully");
-          window.hallenDb = db;
+          window.hallen.db = db;
           resolve();
         })
         .catch((error) => {
@@ -35,7 +35,7 @@ export class App {
     const router = new Router();
     await router.init();
     router.navigateTo("title");
-    window.hallenRouter = router;
+    window.hallen.router = router;
   }
   registerComponents() {
     customElements.define("hg-save-manager", HallenSaveManager);

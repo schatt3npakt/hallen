@@ -4,11 +4,8 @@ export class HallenSaveManager extends HTMLElement {
   }
 
   async connectedCallback() {
-    const storeEntries = await window.hallenDb.getAll();
+    const storeEntries = await window.hallen.db.getAll();
     let template = "";
-
-    template +=
-      '<button class="hg-button" onclick="window.hallenDb.createNewSave()">Create new save</button>';
 
     template += `<h2>Saved Games</h2>`;
 
@@ -20,12 +17,15 @@ export class HallenSaveManager extends HTMLElement {
         template += `
           <li>
             ${this.renderSaveDate(entry.date)}
-            <button class="hg-button"  onclick="window.hallenDb.loadSave('${entry.id}')">Load save</button>
-            <button class="hg-button"  onclick="window.hallenDb.deleteSave('${entry.id}')">Delete save</button>
+            <button class="hg-button"  onclick="window.hallen.db.loadSave('${entry.id}')">Load save</button>
+            <button class="hg-button"  onclick="window.hallen.db.deleteSave('${entry.id}')">Delete save</button>
           </li>`;
       });
       template += `</ul>`;
     }
+
+    template +=
+      '<button class="hg-button" onclick="window.hallen.db.createNewSave()">Create new save</button>';
 
     this.innerHTML = template;
   }

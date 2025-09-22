@@ -88,23 +88,23 @@ export class Db {
   async createNewSave() {
     await this.add({
       id: Math.random().toString(16).slice(2),
-      value: window.hallenState.getState(),
+      value: window.hallen.state.getState(),
       date: new Date().toISOString(),
     });
 
-    window.hallenRouter.refresh();
+    window.hallen.router.refresh();
   }
   async loadSave(id) {
     const save = await this.get(id);
     if (save) {
-      window.hallenState.setState(save.value);
-      window.hallenRouter.refresh();
+      window.hallen.state.setState(save.value);
+      window.hallen.router.refresh();
     } else {
       console.error("Save not found");
     }
   }
   async deleteSave(id) {
     await this.delete(id);
-    window.hallenRouter.refresh();
+    window.hallen.router.refresh();
   }
 }

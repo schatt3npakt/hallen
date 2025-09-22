@@ -3,7 +3,7 @@ import { initialAppState } from "../constants/App.js";
 
 export class AppState {
   async init() {
-    const latestSave = await window.hallenDb.getLatestSave();
+    const latestSave = await window.hallen.db.getLatestSave();
     if (latestSave) {
       this.state = latestSave.value;
     } else {
@@ -19,6 +19,6 @@ export class AppState {
   }
   toScene(sceneId) {
     this.state.currentSceneId = sceneId;
-    window.hallenRouter.refresh();
+    window.hallen.router.refresh();
   }
 }

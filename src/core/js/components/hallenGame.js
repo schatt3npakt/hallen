@@ -11,7 +11,7 @@ export class HallenGame extends HTMLElement {
 
   async render() {
     const scenePath =
-      "./scenes/" + window.hallenState.getState().currentSceneId + ".html";
+      "./scenes/" + window.hallen.state.getState().currentSceneId + ".html";
     const html = await loadHtml(scenePath);
     this.innerHTML = "<div class='hg-loader'>Loading...</div>";
 

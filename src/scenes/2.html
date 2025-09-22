@@ -12,14 +12,6 @@
 
 <div id="content">
   <div id="dialogue">
-    <img
-      id="char-image"
-      alt="A young woman"
-      src="https://placehold.co/100x100"
-      width="100"
-      height="100"
-    />
-
     <p>
       The room was silent except for the faint hum of the overhead lights.
       Shadows stretched across the floor, broken only by the soft glow filtering
@@ -33,10 +25,18 @@
   </div>
 
   <div id="hg-choices">
-    <button class="hg-button" type="button" onclick="hallenState.toScene('1')">
+    <button
+      class="hg-button"
+      type="button"
+      onclick="window.hallen.state.toScene('1')"
+    >
       Choice 1
     </button>
-    <button class="hg-button" type="button" onclick="hallenState.toScene('2')">
+    <button
+      class="hg-button"
+      type="button"
+      onclick="window.hallen.state.toScene('2')"
+    >
       Choice 2
     </button>
   </div>
