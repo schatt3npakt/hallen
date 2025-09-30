@@ -16,6 +16,17 @@ export class HallenGame extends HTMLElement {
     this.classList.add("loading");
     this.innerHTML = html;
 
+    // update unlocks from scene data
+    const raw = this.querySelector("#hg-data")?.textContent;
+    if (raw) {
+      const sceneData = JSON.parse(raw);
+      const s = window.hallen.state.getState();
+      window.hallen.state.setState({
+        ...s,
+        unlocks: new Set([...s.unlocks, ...(sceneData.unlocks || [])]),
+      });
+    }
+
     // preload images
     const images = this.querySelectorAll("img");
     if (images.length === 0) {

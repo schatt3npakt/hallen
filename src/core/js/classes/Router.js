@@ -12,6 +12,7 @@ export class Router {
       options: await loadHtml("./core/html/views/options.html"),
       saves: await loadHtml("./core/html/views/saves.html"),
       title: await loadHtml("./core/html/views/title.html"),
+      unlocks: await loadHtml("./core/html/views/unlocks.html"),
     };
     this.currentPageTemplate = this.routes.title;
   }

@@ -1,11 +1,3 @@
-<img
-  id="visual"
-  src="https://placehold.co/720x504"
-  width="720"
-  height="504"
-  alt="An empty room"
-/>
-
 <div id="content">
   <div id="dialogue">
     <p>
@@ -40,12 +32,11 @@
     >
       To view without images.
     </button>
-    <button
-      class="hg-button"
-      type="button"
-      onclick="hallen.state.toScene('ending')"
-    >
-      To unlock ending view.
-    </button>
   </div>
+
+  <script type="application/json" id="hg-data">
+    {
+      "unlocks": ["ending1"]
+    }
+  </script>
 </div>

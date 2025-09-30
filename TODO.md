@@ -4,21 +4,19 @@
 
 ### 0.1
 
+- implement endings
+- Implement endings view
+
 ## Tasks
 
 ### MUST
 
 ### SHOULD
 
-- Implement endings view
+- implement fullscreen
 - Implement view conditions
+- implement overview of stats on save titles
 
 ### COULD
 
 ### BACKLOG
-
-- implement audio playing functionality
-- implement overview of stats on save titles
-- implement current scene name in save titles
-- audio manager in window schreiben
-- implement user edited constants, for example game title
