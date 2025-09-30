@@ -64,6 +64,10 @@
   hg-game {
     text-align: justify;
 
+    &.loading {
+      opacity: 0;
+    }
+
     #content {
       display: flex;
       flex-flow: column;
@@ -77,14 +81,6 @@
       hyphens: auto;
     }
 
-    #char-image {
-      aspect-ratio: 1 / 1;
-      width: 100%;
-      max-width: 100px;
-      height: fit-content;
-      outline: 2px solid var(--primary-color-dark);
-    }
-
     #visual {
       width: 100%;
       height: auto;
@@ -95,9 +91,14 @@
 
     #hg-choices {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       justify-content: center;
+      flex-flow: column;
       margin-block-start: 1rem;
+
+      button {
+        width: 100%;
+      }
     }
   }
 
@@ -154,6 +155,10 @@
     }
 
     hg-game {
+      #hg-choices {
+        flex-flow: row;
+      }
+
       #dialogue {
         gap: 2rem;
       }
@@ -200,10 +205,6 @@
 
     hg-game {
       #visual {
-        outline: 2px solid var(--primary-color-light);
-      }
-
-      #char-image {
         outline: 2px solid var(--primary-color-light);
       }
     }

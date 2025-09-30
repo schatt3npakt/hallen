@@ -13,22 +13,36 @@ export class HallenGame extends HTMLElement {
     const scenePath =
       "./scenes/" + window.hallen.state.getState().currentSceneId + ".html";
     const html = await loadHtml(scenePath);
-    this.innerHTML = "<div class='hg-loader'>Loading...</div>";
+    this.classList.add("loading");
+    this.innerHTML = html;
 
     // preload images
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    const imgElements = tempDiv.querySelectorAll("img");
-    const imgPromises = Array.from(imgElements).map((img) => {
-      return new Promise((resolve) => {
-        const image = new window.Image();
-        image.onload = () => resolve();
-        image.onerror = () => resolve();
-        image.src = img.src;
+    const images = this.querySelectorAll("img");
+    if (images.length === 0) {
+      this.classList.remove("loading");
+    } else {
+      let loadedCount = 0;
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            this.classList.remove("loading");
+          }
+        } else {
+          img.addEventListener("load", () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              this.classList.remove("loading");
+            }
+          });
+          img.addEventListener("error", () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              this.classList.remove("loading");
+            }
+          });
+        }
       });
-    });
-
-    await Promise.all(imgPromises);
-    this.innerHTML = html;
+    }
   }
 }

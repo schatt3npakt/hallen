@@ -6,10 +6,6 @@
   alt="An empty room"
 />
 
-<audio id="bgm">
-  <source src="bgm.ogg" type="audio/ogg" />
-</audio>
-
 <div id="content">
   <div id="dialogue">
     <p>
@@ -20,24 +16,29 @@
       breath, waiting for something to happen. Every detail in the room seemed
       frozen in time, untouched and undisturbed.
     </p>
-
-    <audio><source src="gunshot.ogg" type="audio/ogg" /></audio>
   </div>
 
   <div id="hg-choices">
     <button
       class="hg-button"
       type="button"
-      onclick="window.hallen.state.toScene('1')"
+      onclick="hallen.state.toScene('subfolder/index')"
     >
-      Choice 1
+      To scene in subfolder.
     </button>
     <button
       class="hg-button"
       type="button"
-      onclick="window.hallen.state.toScene('2')"
+      onclick="hallen.state.toScene('images')"
     >
-      Choice 2
+      To view with images.
+    </button>
+    <button
+      class="hg-button"
+      type="button"
+      onclick="hallen.state.toScene('no-images')"
+    >
+      To view without images.
     </button>
   </div>
 </div>
