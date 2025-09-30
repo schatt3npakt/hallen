@@ -1,10 +1,19 @@
 export async function loadHtml(htmlString) {
-  const response = await fetch(htmlString);
+  const response = await fetch(htmlString)
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error("Failed to load scene: " + htmlString);
+      }
 
-  if (!response.ok) {
-    throw new Error("Routes: Failed loading html " + htmlString);
-  }
+      const text = await res.text();
+      return text;
+    })
+    .catch((error) => {
+      console.error("Error loading HTML:", error);
+      return `
+        <div>The scene could not be loaded.</div>
+      `;
+    });
 
-  const text = await response.text();
-  return text;
+  return response;
 }
