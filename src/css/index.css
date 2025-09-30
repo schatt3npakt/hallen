@@ -16,7 +16,7 @@
     cursor: pointer;
     font-size: 1.2rem;
     outline: 2px solid var(--primary-color-dark);
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem;
     width: fit-content;
 
     &:active,
@@ -185,6 +185,7 @@
         max-width: 50%;
         height: auto;
         object-fit: contain;
+        object-position: top center;
       }
 
       #dialogue {
