@@ -10,6 +10,9 @@
 
 ### SHOULD
 
+- Implement endings view
+- Implement view conditions
+
 ### COULD
 
 ### BACKLOG
