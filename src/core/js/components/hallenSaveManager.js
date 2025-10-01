@@ -17,8 +17,8 @@ export class HallenSaveManager extends HTMLElement {
         template += `
           <li>
             ${this.renderSaveDate(entry.date)}
-            <button class="hg-button"  onclick="window.hallen.db.loadSave('${entry.id}')">Load save</button>
-            <button class="hg-button"  onclick="window.hallen.db.deleteSave('${entry.id}')">Delete save</button>
+            <button class="hg-button"  onclick="window.hallen.db.loadSave('${entry.id}')">Load</button>
+            <button class="hg-button"  onclick="window.hallen.db.deleteSave('${entry.id}')">Delete</button>
           </li>`;
       });
       template += `</ul>`;

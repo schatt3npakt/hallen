@@ -16,6 +16,7 @@
 - implement fullscreen
 - Implement view conditions
 - implement overview of stats on save titles
+- implement menu ux
 
 ### COULD
 
