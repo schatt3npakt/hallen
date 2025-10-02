@@ -1,3 +1,5 @@
+import { hallenUnlocks } from "../../../config.js";
+
 export class HallenSaveManager extends HTMLElement {
   constructor() {
     super();
@@ -16,6 +18,7 @@ export class HallenSaveManager extends HTMLElement {
       storeEntries.forEach((entry) => {
         template += `
           <li>
+            ${this.renderUnlocksPercentage(entry.value.unlocks)}
             ${this.renderSaveDate(entry.date)}
             <div>
               <button class="hg-button"  onclick="window.hallen.db.loadSave('${entry.id}')">Load</button>
@@ -43,5 +46,12 @@ export class HallenSaveManager extends HTMLElement {
       second: "2-digit",
     };
     return dateObj.toLocaleString("en-US", options);
+  }
+
+  renderUnlocksPercentage(unlocks) {
+    const totalUnlocks = Object.keys(hallenUnlocks).length;
+    const unlockedCount = unlocks.size;
+    const percentage = ((unlockedCount / totalUnlocks) * 100).toFixed(2);
+    return `<p><strong>${unlockedCount} / ${totalUnlocks}</strong> unlocks (${percentage}%)</p>`;
   }
 }
