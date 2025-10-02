@@ -2,6 +2,7 @@ import { AppState } from "./AppState.js";
 import { Db } from "./Db.js";
 import { Router } from "./Router.js";
 import { HallenSaveManager } from "../components/hallenSaveManager.js";
+import { HallenOptionsManager } from "../components/hallenOptionsManager.js";
 import { HallenUnlocks } from "../components/hallenUnlocks.js";
 import { HallenGame } from "../components/hallenGame.js";
 
@@ -40,6 +41,7 @@ export class App {
   }
   registerComponents() {
     customElements.define("hg-save-manager", HallenSaveManager);
+    customElements.define("hg-options-manager", HallenOptionsManager);
     customElements.define("hg-game", HallenGame);
     customElements.define("hg-unlocks", HallenUnlocks);
   }

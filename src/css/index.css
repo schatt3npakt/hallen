@@ -149,13 +149,19 @@
 
   hg-unlocks {
     width: 100%;
+
     ul {
       list-style-type: none;
       font-size: 1.1rem;
       padding: 0;
 
       li {
-        margin-block-end: 0.5rem;
+        margin-block-end: 1rem;
+
+        &:not(:last-child) {
+          padding-bottom: 1rem;
+          border-bottom: 1px solid currentColor;
+        }
       }
     }
   }
@@ -200,7 +206,17 @@
 
     hg-unlocks {
       ul {
-        columns: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+
+        li {
+          border: none;
+
+          &:not(:last-child) {
+            border-bottom: none;
+          }
+        }
       }
     }
   }
