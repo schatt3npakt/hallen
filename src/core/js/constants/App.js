@@ -1,5 +1,7 @@
+import { hallenVariables } from "../../../config.js";
+
 export const initialAppState = {
   currentSceneId: null,
   unlocks: new Set(),
-  variables: {},
+  variables: { ...hallenVariables },
 };

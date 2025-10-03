@@ -184,8 +184,12 @@
     }
 
     hg-game {
-      display: flex;
       gap: 1.5rem;
+      &:has(#visual) {
+        gap: 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
 
       #dialogue {
         gap: 2rem;
@@ -193,7 +197,7 @@
 
       #visual {
         margin-block-end: 2.5rem;
-        max-width: 50%;
+        width: 100%
         height: auto;
         object-fit: contain;
         object-position: top center;

@@ -12,3 +12,7 @@ export const hallenUnlocks = {
     description: "You have reached the second ending of the game.",
   },
 };
+
+export const hallenVariables = {
+  var1: false,
+};

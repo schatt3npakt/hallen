@@ -66,10 +66,11 @@ const server = http.createServer((req, res) => {
 });
 
 // Watch src directory for changes
-// eslint-disable-next-line no-unused-vars
+ 
 fs.watch(SRC_DIR, { recursive: true }, (eventType, filename) => {
   clients.forEach((res) => {
     res.write("data: reload\n\n");
+    console.log(`File changed: ${filename}`);
   });
 });
 

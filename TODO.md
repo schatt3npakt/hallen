@@ -10,6 +10,7 @@
 - implement overview of stats on save titles
 - implement menu ux
 - Implement view conditions
+- Implement dev server
 
 ## Tasks
 
@@ -18,8 +19,8 @@
 ### SHOULD
 
 - implement visual editing
-- Implement dev server
 - Implement autotester
+- Implement PWA
 
 ### COULD
 
