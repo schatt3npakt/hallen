@@ -19,6 +19,7 @@
 
 - implement visual editing
 - Implement dev server
+- Implement autotester
 
 ### COULD
 

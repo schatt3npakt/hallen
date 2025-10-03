@@ -17,6 +17,15 @@ Hallen is a framework for visual novels based on html, css and js.
 - **index.css** game styles
 - **index.html** main app document
 
+## Get started
+
+```bash
+nvm use
+node server.js
+```
+
+Your project will be available at http://localhost:8000
+
 ## Vision
 
 Hallen can be used to create accessible, responsive web-based CYOA games.
@@ -47,13 +56,7 @@ A scene can have the following parts:
 
 - A visual, the main image of the scene
 - A dialogue, the scenes main text.
-- Choices that can lead to new scenes
+- Choices that can lead to new scenes.
+- A data object in jsonLD format that can manipulate game state and unlocks upon scene view
 
-### Dialogue
-
-Dialogues tell the main part of the story. They are series of texts displayed in a text box one after another.
-Dialogue texts can have the following elements:
-
-- An image, for example the image of the speaker
-- Text which is displayed in the text box
-- A sound which is played upon showing the text.
+Examples for the different scene capabilities can be seen in the scenes folder.
