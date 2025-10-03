@@ -56,7 +56,6 @@ const server = http.createServer((req, res) => {
         </script>
         `;
         content = content.toString().replace("</body>", reloadScript + "</body>");
-        content = content.replace("</body>", "<hg-debugger-overlay /></body>");
       }
       res.writeHead(200, {
         "Content-Type": mimeTypes[ext] || "application/octet-stream",
