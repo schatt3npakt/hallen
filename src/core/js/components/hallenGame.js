@@ -10,37 +10,41 @@ export class HallenGame extends HTMLElement {
   }
 
   async render() {
+    this.classList.add("loading");
     const scenePath =
       "./scenes/" + window.hallen.state.getState().currentSceneId + ".html";
     const html = await loadHtml(scenePath);
-
-    this.classList.add("loading");
     this.innerHTML = html;
 
-    // update unlocks from scene data
     const raw = this.querySelector("#hg-data")?.textContent;
     if (raw) {
-      const sceneData = JSON.parse(raw);
-      const s = window.hallen.state.getState();
-      window.hallen.state.setState({
-        ...s,
-        unlocks: new Set([...s.unlocks, ...(sceneData.unlocks || [])]),
-      });
+      this.updateStateFromSceneData(JSON.parse(raw));
     }
 
-    // update variables from scene data
-    if (raw) {
-      const sceneData = JSON.parse(raw);
-      const s = window.hallen.state.getState();
+    this.resolveChoiceConditions();
+    this.preloadImages();
+  }
+
+  updateStateFromSceneData(sceneData) {
+    const s = window.hallen.state.getState();
+    if (sceneData.unlocks) {
       window.hallen.state.setState({
         ...s,
+        unlocks: new Set([...s.unlocks, ...sceneData.unlocks]),
+      });
+    }
+    if (sceneData.variables) {
+      window.hallen.state.setState({
+        ...window.hallen.state.getState(),
         variables: {
           ...s.variables,
           ...sceneData.variables,
         },
       });
     }
-    // resolve view conditions to determine which choices to show based on state variables
+  }
+
+  resolveChoiceConditions() {
     const s = window.hallen.state.getState();
     const variables = s.variables || {};
     const choices = this.querySelectorAll("#hg-choices [data-hg-condition]");
@@ -48,46 +52,34 @@ export class HallenGame extends HTMLElement {
       const cond = el.getAttribute("data-hg-condition");
       let show = true;
       if (cond) {
-        if (cond.startsWith("!")) {
-          // Negated condition: show if variable is NOT truthy
-          show = !variables[cond.slice(1)];
-        } else {
-          // Positive condition: show if variable is truthy
-          show = !!variables[cond];
-        }
+        show = cond.startsWith("!")
+          ? !variables[cond.slice(1)]
+          : !!variables[cond];
       }
-      if (!show) {
-        el.remove();
-      }
+      if (!show) el.remove();
     });
+  }
 
-    // preload images
+  preloadImages() {
     const images = this.querySelectorAll("img");
     if (images.length === 0) {
       this.classList.remove("loading");
-    } else {
-      let loadedCount = 0;
-      images.forEach((img) => {
-        if (img.complete) {
-          loadedCount++;
-          if (loadedCount === images.length) {
-            this.classList.remove("loading");
-          }
-        } else {
-          img.addEventListener("load", () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-              this.classList.remove("loading");
-            }
-          });
-          img.addEventListener("error", () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-              this.classList.remove("loading");
-            }
-          });
-        }
-      });
+      return;
     }
+    let loadedCount = 0;
+    const onLoadOrError = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        this.classList.remove("loading");
+      }
+    };
+    images.forEach((img) => {
+      if (img.complete) {
+        onLoadOrError();
+      } else {
+        img.addEventListener("load", onLoadOrError);
+        img.addEventListener("error", onLoadOrError);
+      }
+    });
   }
 }
