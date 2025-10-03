@@ -13,6 +13,7 @@ export class HallenGame extends HTMLElement {
     const scenePath =
       "./scenes/" + window.hallen.state.getState().currentSceneId + ".html";
     const html = await loadHtml(scenePath);
+
     this.classList.add("loading");
     this.innerHTML = html;
 
@@ -26,6 +27,27 @@ export class HallenGame extends HTMLElement {
         unlocks: new Set([...s.unlocks, ...(sceneData.unlocks || [])]),
       });
     }
+
+    // resolve view conditions
+    const s = window.hallen.state.getState();
+    const unlocks = s.unlocks || new Set();
+    const choices = this.querySelectorAll("#hg-choices [data-hg-condition]");
+    choices.forEach((el) => {
+      const cond = el.getAttribute("data-hg-condition");
+      let show = true;
+      if (cond) {
+        if (cond.startsWith("!")) {
+          // Negated condition: show if NOT unlocked
+          show = !unlocks.has(cond.slice(1));
+        } else {
+          // Positive condition: show if unlocked
+          show = unlocks.has(cond);
+        }
+      }
+      if (!show) {
+        el.remove();
+      }
+    });
 
     // preload images
     const images = this.querySelectorAll("img");

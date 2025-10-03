@@ -6,6 +6,9 @@
 
 - implement endings
 - Implement endings view
+- implement fullscreen
+- implement overview of stats on save titles
+- implement menu ux
 
 ## Tasks
 
@@ -13,10 +16,9 @@
 
 ### SHOULD
 
-- implement fullscreen
 - Implement view conditions
-- implement overview of stats on save titles
-- implement menu ux
+- implement visual editing
+- Implement dev server
 
 ### COULD
 

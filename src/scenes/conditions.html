@@ -1,11 +1,3 @@
-<img
-  id="visual"
-  src="https://placehold.co/720x504"
-  width="720"
-  height="504"
-  alt="An empty room"
-/>
-
 <div id="content">
   <div id="dialogue">
     <p>
@@ -24,42 +16,23 @@
       type="button"
       onclick="hallen.state.toScene('subfolder/index')"
     >
-      To scene in subfolder.
+      This should always be visibile.
     </button>
     <button
       class="hg-button"
-      type="button"
-      onclick="hallen.state.toScene('conditions')"
-    >
-      To conditions scene.
-    </button>
-    <button
-      class="hg-button"
-      type="button"
-      onclick="hallen.state.toScene('subfolder/index')"
-    >
-      To scene in subfolder.
-    </button>
-    <button
-      class="hg-button"
+      data-hg-condition="ending1"
       type="button"
       onclick="hallen.state.toScene('images')"
     >
-      To view with images.
+      This should be visible if ending1 is unlocked.
     </button>
     <button
       class="hg-button"
+      data-hg-condition="!ending1"
       type="button"
-      onclick="hallen.state.toScene('no-images')"
+      onclick="hallen.state.toScene('images')"
     >
-      To view without images.
-    </button>
-    <button
-      class="hg-button"
-      type="button"
-      onclick="hallen.state.toScene('ending')"
-    >
-      To unlock ending view.
+      This should be visible if ending1 is locked.
     </button>
   </div>
 </div>
