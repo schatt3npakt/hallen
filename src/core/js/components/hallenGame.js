@@ -28,7 +28,7 @@ export class HallenGame extends HTMLElement {
       });
     }
 
-    // resolve view conditions
+    // resolve view conditions to determine which choices to show
     const s = window.hallen.state.getState();
     const unlocks = s.unlocks || new Set();
     const choices = this.querySelectorAll("#hg-choices [data-hg-condition]");
