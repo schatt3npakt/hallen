@@ -28,20 +28,32 @@ export class HallenGame extends HTMLElement {
       });
     }
 
-    // resolve view conditions to determine which choices to show
+    // update variables from scene data
+    if (raw) {
+      const sceneData = JSON.parse(raw);
+      const s = window.hallen.state.getState();
+      window.hallen.state.setState({
+        ...s,
+        variables: {
+          ...s.variables,
+          ...sceneData.variables,
+        },
+      });
+    }
+    // resolve view conditions to determine which choices to show based on state variables
     const s = window.hallen.state.getState();
-    const unlocks = s.unlocks || new Set();
+    const variables = s.variables || {};
     const choices = this.querySelectorAll("#hg-choices [data-hg-condition]");
     choices.forEach((el) => {
       const cond = el.getAttribute("data-hg-condition");
       let show = true;
       if (cond) {
         if (cond.startsWith("!")) {
-          // Negated condition: show if NOT unlocked
-          show = !unlocks.has(cond.slice(1));
+          // Negated condition: show if variable is NOT truthy
+          show = !variables[cond.slice(1)];
         } else {
-          // Positive condition: show if unlocked
-          show = unlocks.has(cond);
+          // Positive condition: show if variable is truthy
+          show = !!variables[cond];
         }
       }
       if (!show) {

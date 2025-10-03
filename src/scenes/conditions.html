@@ -20,19 +20,19 @@
     </button>
     <button
       class="hg-button"
-      data-hg-condition="ending1"
+      data-hg-condition="var1"
       type="button"
       onclick="hallen.state.toScene('images')"
     >
-      This should be visible if ending1 is unlocked.
+      This should be visible if var1 is true.
     </button>
     <button
       class="hg-button"
-      data-hg-condition="!ending1"
+      data-hg-condition="!var1"
       type="button"
       onclick="hallen.state.toScene('images')"
     >
-      This should be visible if ending1 is locked.
+      This should be visible if var1 is false.
     </button>
   </div>
 </div>

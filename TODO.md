@@ -9,6 +9,7 @@
 - implement fullscreen
 - implement overview of stats on save titles
 - implement menu ux
+- Implement view conditions
 
 ## Tasks
 
@@ -16,7 +17,6 @@
 
 ### SHOULD
 
-- Implement view conditions
 - implement visual editing
 - Implement dev server
 
